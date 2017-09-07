@@ -34,7 +34,7 @@ class UserInterface():
         self.png_list = []
         
         # populate previous with pngs in game dir
-        with os.scandir(constants.GAME_DIR) as dir_list:
+        with os.scandir('.') as dir_list:
             for entry in dir_list:
                 if entry.name[-3:] == "png":
                     self.png_list.append(entry.name)
