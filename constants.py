@@ -1,3 +1,5 @@
+import random
+
 # list of constants for use in sim life game
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -11,3 +13,6 @@ GAME_DIR = "D:\\learnpython\\Projects\\SimLife"
 # initial Screen dimentions
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 900
+
+# Randomized session seed
+SESSION_SEED = random.random()

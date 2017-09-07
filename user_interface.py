@@ -31,7 +31,7 @@ class UserInterface():
         self.shore_layer_full = None
         self.water_tile = None
         
-        # static var for next
+        # var for next thing
         self.png_list = []
         
         # populate previous with pngs in game dir
@@ -202,7 +202,7 @@ class UserInterface():
             
     def land_tile_blitter(self, screen, grid_coord):
         """ takes the same random tile of land for every coord """
-        random.seed(str(grid_coord))
+        random.seed(str(grid_coord) + str(constants.SESSION_SEED))
         rand_tile = random.randrange(5)
         
         screen.blit(self.land_tile, 

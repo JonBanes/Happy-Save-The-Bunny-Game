@@ -1,4 +1,5 @@
 import pygame
+import random
 import constants
 import user_interface
 
@@ -7,6 +8,7 @@ class Game():
     of the Game class """
     def __init__(self):
         """ Constructor, attr and initialize game """
+        self.session_seed = random.random()
         
     def process_events(self):
         """ process pygame's event queue, return true if window is closed"""
