@@ -1,6 +1,7 @@
 # this will also need these imports
 
 import pygame
+import random
 import os
 import constants
 
@@ -199,15 +200,26 @@ class UserInterface():
             screen.blit(self.shore_layer_corner_isthmus.transform.rotate(90), 
                         [grid_coord[0], grid_coord[1]])            
             
+    def land_tile_blitter(self, screen, grid_coord):
+        """ takes the same random tile of land for every coord """
+        random.seed(str(grid_coord))
+        rand_tile = random.randrange(5)
+        
+        screen.blit(self.land_tile, 
+                    [grid_coord[1] * 30 + self.grid_origin[0], 
+                     grid_coord[0] * 30 + self.grid_origin[1]],
+                    [rand_tile * 30, 0, 30, 30])        
+    
     def draw_whole_terrain_grid(self, screen):
         """ draws the entire terrain grid to screen """
         for row in range(len(self.terrain_grid)):
             for column in range(len(self.terrain_grid[0])):
                 # 0;land, 1:water
                 if self.terrain_grid[row][column] == 0:
-                    screen.blit(self.land_tile, 
-                                [column * 30 + self.grid_origin[0], 
-                                 row * 30 + self.grid_origin[1]])
+                    
+                    self.land_tile_blitter(screen, [row, column])
+                    
+                    
                     self.shore_blitter(screen, [row, column])
                 elif self.terrain_grid[row][column] == 1:
                     screen.blit(self.water_tile, 
