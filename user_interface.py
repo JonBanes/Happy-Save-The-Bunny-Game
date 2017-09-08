@@ -5,7 +5,7 @@ import os
 import constants
 
 class UserInterface():
-    """ UI super class"""
+    """ UI class"""
     def __init__(self):
         """ UI initializer"""
     
