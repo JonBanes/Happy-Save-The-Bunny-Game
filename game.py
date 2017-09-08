@@ -39,7 +39,7 @@ class Game():
             test_screen.draw_whole_terrain_grid(screen)
             
         # draw cursor
-        test_screen.set_cursor_sprite(screen, test_screen.cursor_land)
+        #test_screen.set_cursor_sprite(screen, test_screen.cursor_land)
         
         # flip to screen
         pygame.display.flip()
