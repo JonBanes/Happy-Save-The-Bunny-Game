@@ -30,6 +30,7 @@ class UserInterface():
         self.shore_layer_corner_water_fill = None
         self.shore_layer_full = None
         self.water_tile = None
+        self.stone_sprite_sheet = None
         
         # var for next thing
         self.png_list = []
@@ -200,10 +201,13 @@ class UserInterface():
             screen.blit(self.shore_layer_corner_isthmus.transform.rotate(90), 
                         [grid_coord[0], grid_coord[1]])            
             
-    def land_tile_blitter(self, screen, grid_coord):
+    def rand_stone_blitter(self, screen, grid_coord):
         """ takes the same random tile of land for every coord """
         random.seed(str(grid_coord) + str(constants.SESSION_SEED))
         rand_tile = random.randrange(5)
+        
+        for i in range():
+            pass
         
         screen.blit(self.land_tile, 
                     [grid_coord[1] * 30 + self.grid_origin[0], 
@@ -216,11 +220,9 @@ class UserInterface():
             for column in range(len(self.terrain_grid[0])):
                 # 0;land, 1:water
                 if self.terrain_grid[row][column] == 0:
-                    
-                    self.land_tile_blitter(screen, [row, column])
-                    
-                    
+                    self.rand_stone_blitter(screen, [row, column])
                     self.shore_blitter(screen, [row, column])
+                    
                 elif self.terrain_grid[row][column] == 1:
                     screen.blit(self.water_tile, 
                                 [column * 30 + self.grid_origin[0], 

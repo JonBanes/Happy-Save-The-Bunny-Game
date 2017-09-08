@@ -31,6 +31,9 @@ class Game():
         test_screen.mouse_x = pygame.mouse.get_pos()[0]
         test_screen.mouse_y = pygame.mouse.get_pos()[1]
         
+        # default is land, tiles cover it all
+        screen.fill(constants.LAND_COLOR)
+        
         # draw tiles
         if test_screen.whole_map_blitted == False:
             test_screen.draw_whole_terrain_grid(screen)
