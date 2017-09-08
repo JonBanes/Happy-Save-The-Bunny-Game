@@ -89,10 +89,9 @@ class UserInterface():
                     column = 0
                 
                 if self.terrain_grid[row][column] == 0:
-                    screen.blit(self.land_tile, 
-                                [column * 30 + self.grid_origin[0], 
-                                 row * 30 + self.grid_origin[1]])
+                    self.rand_stone_blitter(screen, [row, column])
                     self.shore_blitter(screen, [row, column])
+                    
                 elif self.terrain_grid[row][column] == 1:
                     screen.blit(self.water_tile, 
                                 [column * 30 + self.grid_origin[0], 
@@ -202,18 +201,32 @@ class UserInterface():
                         [grid_coord[0], grid_coord[1]])            
             
     def rand_stone_blitter(self, screen, grid_coord):
-        """ takes the same random tile of land for every coord """
+        """ blits 1-8 random stones at random places on a land tile """
+        #set up list of random stones
+        stone_list = []
+        
+        # get the seed for this tile (should be the same everytime/session)
         random.seed(str(grid_coord) + str(constants.SESSION_SEED))
-        rand_tile = random.randrange(5)
         
-        for i in range():
-            pass
+        # number of stones
+        stones_per_tile = random.randrange(1, 9)
         
-        screen.blit(self.land_tile, 
-                    [grid_coord[1] * 30 + self.grid_origin[0], 
-                     grid_coord[0] * 30 + self.grid_origin[1]],
-                    [rand_tile * 30, 0, 30, 30])        
-    
+        # get SAME offset and stone type in format 
+        # [pixel offset x, pixel offset y, pixel offset for type] and append
+        for i in range(stones_per_tile):
+            random.seed(str(grid_coord) + str(constants.SESSION_SEED) + str(i))
+            offset_x = random.randrange(10) * 3
+            offset_y = random.randrange(10) * 3
+            stone_type = random.randrange(8) * 3
+            
+            stone_list.append([offset_x, offset_y, stone_type])
+        
+        for stone in stone_list:
+            screen.blit(self.stone_sprite_sheet, [grid_coord[1] * 30 + self.grid_origin[1] + stone[0], 
+                                                  grid_coord[0] * 30 + self.grid_origin[0] + stone[1]], 
+                                                  [stone[2], 0, 3, 3])
+        
+        
     def draw_whole_terrain_grid(self, screen):
         """ draws the entire terrain grid to screen """
         for row in range(len(self.terrain_grid)):
