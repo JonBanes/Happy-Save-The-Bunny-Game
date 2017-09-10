@@ -28,8 +28,12 @@ def main():
     # used to manage how fast the screen updates
     clock = pygame.time.Clock()
     
-    # Build UI objects
+    # Build game object
     test_game = game.Game()
+    
+    # set up FPS display
+    pygame.font.init()
+    myfont = pygame.font.SysFont('Calibri', 30)
     
     # -------- Main Program Loop -----------
     while not done:
@@ -41,6 +45,11 @@ def main():
         
         # Draw the frame
         test_game.display_frame(screen)
+        
+        # draw current FPS
+        current_fps = myfont.render(str(clock.get_fps()), False, constants.BLACK)
+        screen.blit(current_fps, (0,0))
+        pygame.display.flip()
  
         # Limit to 60 frames per second
         clock.tick(60)

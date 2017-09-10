@@ -1,5 +1,7 @@
 # this will also need these imports
-
+# for optimization debugs
+import time
+# for all the other shit
 import pygame
 import random
 import os
@@ -214,8 +216,6 @@ class UserInterface():
         # get SAME offset and stone type in format 
         # [pixel offset x, pixel offset y, pixel offset for type] and append
         for i in range(stones_per_tile):
-            print("append")
-            random.seed(str(grid_coord) + str(constants.SESSION_SEED) + str(i))
             offset_x = random.randrange(10) * 3
             offset_y = random.randrange(10) * 3
             stone_type = random.randrange(8) * 3
@@ -223,11 +223,9 @@ class UserInterface():
             stone_list.append([offset_x, offset_y, stone_type])
         
         for stone in stone_list:
-            print("blit")
             screen.blit(self.stone_sprite_sheet, [grid_coord[1] * 30 + self.grid_origin[1] + stone[0], 
                                                   grid_coord[0] * 30 + self.grid_origin[0] + stone[1]], 
                                                   [stone[2], 0, 3, 3])
-        
         
     def draw_whole_terrain_grid(self, screen):
         """ draws the entire terrain grid to screen """
