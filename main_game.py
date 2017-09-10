@@ -8,7 +8,6 @@ import os
 
 # personal libraries
 import constants
-import user_interface
 import game
     
 def main():
