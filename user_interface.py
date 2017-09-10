@@ -11,7 +11,11 @@ class UserInterface():
     """ UI super class"""
     def __init__(self):
         """ UI initializer"""
-    
+        
+        # debug
+        self.start_time = 0
+        self.end_time = 0
+        
         #set up mouse input
         self.mouse_x = 0
         self.mouse_y = 0
@@ -80,7 +84,10 @@ class UserInterface():
             for x in range(2):
                 for y in range(2):
                     box.append([self.cover_coord_x // 30 + x, self.cover_coord_y // 30 + y])
-                    
+            
+            # debug
+            self.start_time = time.time()
+            
             for item in box:
                 row = item[1]
                 column = item[0]
@@ -97,7 +104,11 @@ class UserInterface():
                 elif self.terrain_grid[row][column] == 1:
                     screen.blit(self.water_tile, 
                                 [column * 30 + self.grid_origin[0], 
-                                 row * 30 + self.grid_origin[1]])            
+                                 row * 30 + self.grid_origin[1]])
+            
+            #debug
+            self.end_time = time.time()
+            print(self.end_time - self.start_time)
             
             screen.blit(self.cursor_sprite, [self.mouse_x, self.mouse_y])
             
@@ -219,7 +230,7 @@ class UserInterface():
             offset_x = random.randrange(10) * 3
             offset_y = random.randrange(10) * 3
             stone_type = random.randrange(8) * 3
-            print(stone_type)
+            
             stone_list.append([offset_x, offset_y, stone_type])
         
         for stone in stone_list:
