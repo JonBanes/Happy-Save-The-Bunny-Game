@@ -219,7 +219,7 @@ class UserInterface():
             offset_x = random.randrange(10) * 3
             offset_y = random.randrange(10) * 3
             stone_type = random.randrange(8) * 3
-            
+            print(stone_type)
             stone_list.append([offset_x, offset_y, stone_type])
         
         for stone in stone_list:
