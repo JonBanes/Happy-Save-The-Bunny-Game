@@ -8,7 +8,6 @@ import os
 
 # personal libraries
 import constants
-import user_interface
 import game
     
 def main():
@@ -28,7 +27,7 @@ def main():
     # used to manage how fast the screen updates
     clock = pygame.time.Clock()
     
-    # Build UI objects
+    # Build game object
     test_game = game.Game()
     
     # set up FPS display
